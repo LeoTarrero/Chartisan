@@ -12,8 +12,10 @@
 </template>
 <script>
 export default {
-  data: () => ({
-    links: ["Chart", "Table"],
-  }),
+  data() {
+    return {
+      links: ["Chart", "Table"],
+    };
+  },
 };
 </script>
