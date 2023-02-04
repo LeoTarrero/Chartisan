@@ -2,7 +2,7 @@ export const settings = [
   {
     type: 'BarChart',
     title: 'Bar Chart',
-    icon: 'mdi-chart-bar',
+    icon: 'mdi-align-horizontal-left',
   },
   {
     type: 'ColumnChart',
@@ -55,3 +55,12 @@ export const settings = [
     icon: 'mdi-table',
   },
 ]
+
+export const colorTheme = [
+  { color: ['#3fc7ad', '#2f9480', '#0f2e28', '#1f6154'] },
+  { color: ['#5e87f5', '#4e69c3', '#3d4b91', '#2d2c5e'] },
+  { color: ['#9ac5d3', '#141e26', '#159ab7', '#1e5067'] },
+  { color: ['#d8796e', '#f7bcb9', '#ea8f98', '#b36270'] },
+  { color: ['#04555c', '#048e9c', '#4bcdcf', '#19a4bb'] },
+]
+

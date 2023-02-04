@@ -6,17 +6,3 @@ export const chartData = [
   ['Houston, TX', 2099000, 1953000],
   ['Philadelphia, PA', 1526000, 1517000],
 ]
-export const chartOptions = {
-  title: 'Population of Largest U.S. Cities',
-  legendPosition: 'bottom',
-  chartArea: { width: '50%' },
-  hAxis: {
-    title: 'Total Population',
-    minValue: 0,
-  },
-  vAxis: {
-    title: 'City',
-  },
-  width: 800,
-  height: 600,
-};
