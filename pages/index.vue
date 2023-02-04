@@ -1,7 +1,6 @@
 <template>
   <v-app id="inspire">
     <navBar />
-
     <v-main class="grey lighten-3">
       <v-container>
         <v-row>
@@ -11,6 +10,8 @@
                 <v-row>
                   <v-col align="center">
                     <chartTemplate />
+                    <chartTable />
+                    <textCom />
                   </v-col>
                 </v-row>
               </v-container>
@@ -29,7 +30,3 @@
     </v-main>
   </v-app>
 </template>
-
-<script>
-export default {};
-</script>

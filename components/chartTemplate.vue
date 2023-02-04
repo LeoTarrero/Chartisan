@@ -5,7 +5,12 @@
     <v-row justify="center">
       <v-toolbar dense flat>
         <v-col class="d-flex" cols="12" sm="6">
-          <v-text-field v-model="options.title" label="Title"></v-text-field>
+          <v-text-field
+            v-model="options.title"
+            label="Title"
+            clearable
+            color="success"
+          ></v-text-field>
         </v-col>
         <v-spacer />
         <v-menu v-model="showMenu" style="max-width: 600px" close-on-click top>
@@ -46,17 +51,16 @@ import { chartData } from "~/assets/chartData.js";
 import { EventBus } from "~/plugins/event-bus";
 import { colorTheme } from "~/assets/chartSettings.js";
 export default {
-  showMenu: false,
   name: "GoogleChart",
   components: {
     GChart,
   },
   data() {
     return {
+      showMenu: false,
       colorTheme,
       options: {
-        title: "Population of Largest U.S. Cities",
-        chartArea: { width: "50%" },
+        title: "",
         hAxis: {
           title: "Total Population",
           minValue: 0,
@@ -66,7 +70,7 @@ export default {
         },
         fontName: "Roboto",
         fontSize: "16",
-        width: 800,
+        width: 1000,
         height: 600,
         colors: ["#3fc7ad", "#2f9480", "#0f2e28", "#1f6154"],
       },
@@ -79,11 +83,13 @@ export default {
       },
     };
   },
+
   created() {
     EventBus.$on("selectOption", (type) => {
       this.type = type.type;
     });
   },
+
   methods: {
     selectedColors(color) {
       this.options.colors = color;

@@ -5,7 +5,9 @@
         {{ link }}
       </v-tab>
     </v-tabs>
-    <v-avatar class="mr-16"><img src="~/static/logo.svg" alt="John" /></v-avatar>
+    <v-avatar class="mr-16"
+      ><img src="~/static/logo.svg" alt="charts are fun"
+    /></v-avatar>
   </v-app-bar>
 </template>
 <script>

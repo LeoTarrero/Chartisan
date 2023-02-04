@@ -9,7 +9,7 @@ export default {
 
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
-    titleTemplate: 'Chartisan',
+    titleTemplate: '%s - Chartisan',
     title: 'Chartisan',
     htmlAttrs: {
       lang: 'en',
