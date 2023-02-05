@@ -30,7 +30,8 @@
                   {{ item[header.value] }}
                   <template #input>
                     <v-text-field
-                      v-model="item[header.value]"
+                      :key="`${header.text}-${index}`"
+                      v-model="item[header.text]"
                       label="Edit"
                       single-line
                       clearable
@@ -51,22 +52,24 @@
   </v-container>
 </template>
 <script>
+import { chartData } from "~/assets/chartData";
+
 export default {
   data() {
     return {
       dialog: false,
       search: "",
-      headers: [
-        {
-          text: "Character",
-          align: "left",
-          sortable: false,
-          value: "name",
-        },
-        { text: "Weight", value: "weight" },
-        { text: "Height", value: "height" },
-      ],
-      items: [],
+      headers: chartData[0].map((header, index) => ({
+        text: header,
+        value: header,
+      })),
+      items: chartData.slice(1).map((item) => {
+        const itemObject = {};
+        chartData[0].forEach((header, index) => {
+          itemObject[header] = item[index];
+        });
+        return itemObject;
+      }),
     };
   },
 
@@ -78,7 +81,7 @@ export default {
     addItem() {
       const newItem = {
         id: this.items.length + 1,
-        name: "New Character",
+        name: "",
       };
       this.items.push(newItem);
     },
