@@ -73,6 +73,7 @@ export default {
       this.editedIndex = this.localItems.indexOf(item);
       this.editedItem = Object.assign({}, item);
       this.localItems.splice(this.editedIndex, 1);
+      this.$emit('updateTable', this.localItems)
     },
     downloadData() {
       const data = "module.exports = " + JSON.stringify(this.items);
@@ -82,6 +83,7 @@ export default {
       a.download = "data.js";
       a.click();
     },
+    
   },
 };
 </script>

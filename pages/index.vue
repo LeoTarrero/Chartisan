@@ -10,6 +10,7 @@
         </v-tabs>
       </v-toolbar>
       <v-container>
+        {{items}}
         <v-row>
           
           <v-col cols="12" sm="9">
@@ -19,7 +20,7 @@
                   <v-col align="center">
                     <v-tabs-items v-model="tab">
                       <v-tab-item>
-                        <chartTemplate :data="dataItems" />
+                        <chartTemplate :data="dataItems " />
                       </v-tab-item>
                       <v-tab-item>
                         <chartTable :headers="headers" :items="items" @updateTable="updateTable"/>
@@ -66,13 +67,13 @@ export default {
   computed:{
     dataItems(){
       const finalList = [];
-      const headers = Object.keys(this.items[0])
-      console.log(headers)
+      const headers = this.items[0] ? Object.keys(this.items[0]):[]
       finalList.push(headers)
       for (const item in this.items){
         const tempList = []
         for (const header in headers){
-          tempList.push(this.items[item][headers[header]])
+          Number(this.items[item][headers[header]]) ? tempList.push(Number(this.items[item][headers[header]])): tempList.push(this.items[item][headers[header]])
+          
         }
         finalList.push(tempList)
       }
