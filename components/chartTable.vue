@@ -12,11 +12,19 @@
         ></v-text-field>
         <v-spacer />
         <v-btn outlined color="success" @click="addItem">Add Rows</v-btn>
+        <v-divider vertical class="mx-4" />
+        <v-btn outlined color="success" @click="downloadData"
+          ><v-icon>mdi-download</v-icon></v-btn
+        >
+        <v-divider vertical class="mx-4" />
+        <v-btn outlined color="success" @click="saveTable"
+          ><v-icon>mdi-save</v-icon></v-btn
+        >
       </v-toolbar>
       <v-data-table :headers="headers" :items="items" :search="search">
         <template #body="{ items }">
           <tbody>
-            <tr v-for="item in items" :key="item">
+            <tr v-for="item in items" :key="item.id">
               <td v-for="header in headers" :key="header">
                 <v-edit-dialog
                   :return-value.sync="item[header.value]"
@@ -47,7 +55,7 @@
   </v-container>
 </template>
 <script>
-import { chartData } from "~/assets/chartData.js";
+import fs from "fs";
 export default {
   data() {
     return {
@@ -55,21 +63,15 @@ export default {
       search: "",
       headers: [
         {
-          text: chartData[0][0],
+          text: "Character",
           align: "left",
           sortable: false,
           value: "name",
         },
-        { text: chartData[0][1] + " (kg)", value: chartData[0][1] },
-        { text: chartData[0][2] + " (cm)", value: chartData[0][2] },
+        { text: "Weight", value: "weight" },
+        { text: "Height", value: "height" },
       ],
-      items: [
-        { name: chartData[1][0], Height: chartData[1][1], Weight: chartData[1][2] },
-        { name: chartData[2][0], Height: chartData[2][1], Weight: chartData[2][2] },
-        { name: chartData[3][0], Height: chartData[3][1], Weight: chartData[3][2] },
-        { name: chartData[4][0], Height: chartData[4][1], Weight: chartData[4][2] },
-        { name: chartData[5][0], Height: chartData[5][1], Weight: chartData[5][2] },
-      ],
+      items: [],
     };
   },
 
@@ -89,6 +91,18 @@ export default {
       this.editedIndex = this.items.indexOf(item);
       this.editedItem = Object.assign({}, item);
       this.items.splice(this.editedIndex, 1);
+    },
+    async saveTable() {
+      const data = "File content to save";
+      await fs.promises.writeFile("path/to/file.txt", data);
+    },
+    downloadData() {
+      const data = "module.exports = " + JSON.stringify(this.items);
+      const file = new Blob([data], { type: "application/javascript" });
+      const a = document.createElement("a");
+      a.href = URL.createObjectURL(file);
+      a.download = "data.js";
+      a.click();
     },
   },
 };
