@@ -17,50 +17,22 @@
           ><v-icon>mdi-download</v-icon></v-btn
         >
       </v-toolbar>
-      {{items}}
-      <v-data-table :headers="headers" :items="items" :search="search" >
+      <v-data-table :headers="localHeaders" :items="localItems" :search="search" >
         <template #item="{ item,headers }">
           <tr>
-            <td v-for="header in headers" :key="header">
+            <td v-for="header in headers" :key="header.text">
               <v-text-field
                 v-model="item[header.value]"
                 dense
                 flat  
                 solo
+                @change="$emit('updateTable',localItems)"
+
               >
               </v-text-field>
             </td>
           </tr>
         </template>
-        <!-- <template #body="{ items }">
-          <tbody>
-            <tr v-for="(item, index) in items" :key="index">
-              <td v-for="header in headers" :key="header">
-                <v-edit-dialog
-                  :return-value.sync="item[header.value]"
-                  @open="open"
-                  @close="close"
-                >
-                  {{ item[header.value] }}
-                  <template #input>
-                    <v-text-field
-                      :key="`${header.text}-${index}`"
-                      v-model="item[header.text]"
-                      label="Edit"
-                      single-line
-                      clearable
-                      color="success"
-                    ></v-text-field>
-                  </template>
-                </v-edit-dialog>
-              </td>
-
-              <v-icon class="my-4" small @click="deleteItem(item)">
-                mdi-window-close
-              </v-icon>
-            </tr>
-          </tbody>
-        </template> -->
       </v-data-table>
     </v-card>
   </v-container>
@@ -81,6 +53,8 @@ export default {
     return {
       dialog: false,
       search: "",
+      localHeaders: Array.from(this.headers),
+      localItems: Array.from(this.items)
     };
   },
   methods: {
@@ -93,14 +67,14 @@ export default {
         id: this.items.length + 1,
         name: "",
       };
-      /*    this.items.push(newItem); */
-      this.$emit("add-item", newItem);
+          this.localItems.push(newItem); 
+      // this.$emit("add-item", newItem);
     },
     deleteItem(item) {
-      this.editedIndex = this.items.indexOf(item);
+      this.editedIndex = this.localItems.indexOf(item);
       this.editedItem = Object.assign({}, item);
-      /*     this.items.splice(this.editedIndex, 1); */
-      this.$emit("update-items", this.items);
+      this.localItems.splice(this.editedIndex, 1); 
+      // this.$emit("update-items", this.items);
     },
     downloadData() {
       const data = "module.exports = " + JSON.stringify(this.items);

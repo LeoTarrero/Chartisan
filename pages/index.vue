@@ -21,7 +21,7 @@
                         <chartTemplate />
                       </v-tab-item>
                       <v-tab-item>
-                        <chartTable :headers="headers" :items="items" />
+                        <chartTable :headers="headers" :items="items" @updateTable="updateTable"/>
                       </v-tab-item>
                     </v-tabs-items>
                   </v-col>
@@ -33,6 +33,7 @@
           <v-col cols="12" sm="3">
             <v-sheet rounded="lg" height="65vh">
               <v-list>
+                {{items}}
                 <chartSelector />
               </v-list>
             </v-sheet>
@@ -62,5 +63,10 @@ export default {
       }),
     };
   },
+  methods:{
+    updateTable(items){
+      this.items = items
+    }
+  }
 };
 </script>
