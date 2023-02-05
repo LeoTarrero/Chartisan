@@ -52,23 +52,21 @@
   </v-container>
 </template>
 <script>
-import { chartData } from "~/assets/chartData";
 export default {
+  props: {
+    headers: {
+      type: Array,
+      required: true,
+    },
+    items: {
+      type: Array,
+      required: true,
+    },
+  },
   data() {
     return {
       dialog: false,
       search: "",
-      headers: chartData[0].map((header) => ({
-        text: header,
-        value: header,
-      })),
-      items: chartData.slice(1).map((item) => {
-        const itemObject = {};
-        chartData[0].forEach((header, index) => {
-          itemObject[header] = item[index];
-        });
-        return itemObject;
-      }),
     };
   },
   methods: {
@@ -79,14 +77,16 @@ export default {
     addItem() {
       const newItem = {
         id: this.items.length + 1,
-        name: "New Character",
+        name: "",
       };
-      this.items.push(newItem);
+      /*    this.items.push(newItem); */
+      this.$emit("add-item", newItem);
     },
     deleteItem(item) {
       this.editedIndex = this.items.indexOf(item);
       this.editedItem = Object.assign({}, item);
-      this.items.splice(this.editedIndex, 1);
+      /*     this.items.splice(this.editedIndex, 1); */
+      this.$emit("update-items", this.items);
     },
     downloadData() {
       const data = "module.exports = " + JSON.stringify(this.items);
