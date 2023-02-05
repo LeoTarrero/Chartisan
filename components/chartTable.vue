@@ -1,22 +1,23 @@
 <template>
   <v-container>
-    <v-card class="pa-4">
+    <v-card class="pa-4" outlined>
       <v-toolbar flat color="#FAFAFA">
         <v-text-field
           v-model="search"
           prepend-icon="mdi-magnify"
           label="Search"
           color="success"
+          clearable
           hide-details
         ></v-text-field>
         <v-spacer />
         <v-btn outlined color="success" @click="addItem">Add Rows</v-btn>
       </v-toolbar>
-      <v-data-table :headers="headers" :items="items" :search="search" item-key="name">
+      <v-data-table :headers="headers" :items="items" :search="search">
         <template #body="{ items }">
           <tbody>
-            <tr v-for="(item, idx) in items" :key="idx">
-              <td v-for="(header, key) in headers" :key="key">
+            <tr v-for="item in items" :key="item">
+              <td v-for="header in headers" :key="header">
                 <v-edit-dialog
                   :return-value.sync="item[header.value]"
                   @open="open"
@@ -29,6 +30,7 @@
                       label="Edit"
                       single-line
                       clearable
+                      color="success"
                     ></v-text-field>
                   </template>
                 </v-edit-dialog>
@@ -45,23 +47,29 @@
   </v-container>
 </template>
 <script>
+import { chartData } from "~/assets/chartData.js";
 export default {
   data() {
     return {
+      dialog: false,
       search: "",
       headers: [
         {
-          text: "Name",
+          text: chartData[0][0],
           align: "left",
           sortable: false,
           value: "name",
         },
-        { text: "Calories", value: "calories" },
-        { text: "Fat (g)", value: "fat" },
-        { text: "Carbs (g)", value: "carbs" },
-        { text: "Protein (g)", value: "protein" },
+        { text: chartData[0][1] + " (kg)", value: chartData[0][1] },
+        { text: chartData[0][2] + " (cm)", value: chartData[0][2] },
       ],
-      items: [],
+      items: [
+        { name: chartData[1][0], Height: chartData[1][1], Weight: chartData[1][2] },
+        { name: chartData[2][0], Height: chartData[2][1], Weight: chartData[2][2] },
+        { name: chartData[3][0], Height: chartData[3][1], Weight: chartData[3][2] },
+        { name: chartData[4][0], Height: chartData[4][1], Weight: chartData[4][2] },
+        { name: chartData[5][0], Height: chartData[5][1], Weight: chartData[5][2] },
+      ],
     };
   },
 
@@ -73,12 +81,7 @@ export default {
     addItem() {
       const newItem = {
         id: this.items.length + 1,
-        name: "",
-        calories: "",
-        fat: "",
-        carbs: "",
-        protein: "",
-        iron: "",
+        name: "New Character",
       };
       this.items.push(newItem);
     },

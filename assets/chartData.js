@@ -1,8 +1,8 @@
 export const chartData = [
-  ['City', '2010 Population', '2000 Population'],
-  ['New York City, NY', 8175000, 8008000],
-  ['Los Angeles, CA', 3792000, 3694000],
-  ['Chicago, IL', 2695000, 2896000],
-  ['Houston, TX', 2099000, 1953000],
-  ['Philadelphia, PA', 1526000, 1517000],
+  ['Character', 'Height', 'Weight'],
+  ['Goku', 62, 175],
+  ['Vegeta', 56, 164],
+  ['Master Roshi', 44, 165],
+  ['Piccolo', 116, 213],
+  ['Krillin', 45, 153],
 ]

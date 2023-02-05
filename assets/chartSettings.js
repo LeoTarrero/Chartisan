@@ -49,11 +49,6 @@ export const settings = [
     title: 'Stepped area chart',
     icon: 'mdi mdi-stairs',
   },
-  {
-    type: 'Table',
-    title: 'Table',
-    icon: 'mdi-table',
-  },
 ]
 
 export const colorTheme = [
@@ -63,4 +58,3 @@ export const colorTheme = [
   { color: ['#04555c', '#048e9c', '#4bcdcf', '#19a4bb'] },
 ]
 
-export const chartPackages = { packages: ['charteditor'] }

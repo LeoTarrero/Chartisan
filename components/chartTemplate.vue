@@ -1,22 +1,38 @@
 <template>
   <v-container>
     <GChart :type="type" :data="data" :options="options" />
-    <v-divider class="my-10" align="center" />
+    <v-divider class="mb-16" align="center" />
     <v-row justify="center">
       <v-toolbar dense flat>
-        <v-col class="d-flex" cols="12" sm="6">
+        <v-col>
           <v-text-field
             v-model="options.title"
-            label="Title"
+            label="Chart Title"
             clearable
             color="success"
           ></v-text-field>
         </v-col>
-        <v-spacer />
+        <v-col>
+          <v-text-field
+            v-model="options.hAxis.title"
+            label="X Title"
+            clearable
+            color="success"
+          ></v-text-field>
+        </v-col>
+        <v-col>
+          <v-text-field
+            v-model="options.vAxis.title"
+            label="Y Title"
+            clearable
+            color="success"
+          ></v-text-field>
+        </v-col>
+
         <v-menu v-model="showMenu" style="max-width: 600px" close-on-click top>
           <template #activator="{ on, attrs }">
             <v-btn :value="4" text v-bind="attrs" tile v-on="on">
-              <v-icon>mdi-format-color-fill</v-icon>
+              <v-icon color="grey">mdi-format-color-fill</v-icon>
             </v-btn>
           </template>
           <v-list>
@@ -60,13 +76,13 @@ export default {
       showMenu: false,
       colorTheme,
       options: {
-        title: "",
+        title: "DragonBall Top Tanks",
         hAxis: {
-          title: "Total Population",
+          title: "Bulkiness",
           minValue: 0,
         },
         vAxis: {
-          title: "City",
+          title: "Character",
         },
         fontName: "Roboto",
         fontSize: "16",
