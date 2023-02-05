@@ -1,8 +1,8 @@
 export const chartData = [
-  ['Character', 'Height', 'Weight'],
-  ['Goku', 62, 175],
-  ['Vegeta', 56, 164],
-  ['Master Roshi', 44, 165],
-  ['Piccolo', 116, 213],
-  ['Krillin', 45, 153],
+  ['Character', 'Height (cm)', 'Weight (lbs)'],
+  ['Goku', 175, 136],
+  ['Vegeta', 164 , 123],
+  ['Master Roshi', 165, 97],
+  ['Piccolo', 226, 255],
+  ['Krillin', 153 , 99],
 ]

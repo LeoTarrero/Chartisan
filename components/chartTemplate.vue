@@ -76,7 +76,7 @@ export default {
       showMenu: false,
       colorTheme,
       options: {
-        title: "",
+        title: "Dragon Ball Chunks (and Krillin)",
         hAxis: {
           title: "",
           minValue: 0,
