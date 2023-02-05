@@ -15,7 +15,7 @@
         <v-col>
           <v-text-field
             v-model="options.hAxis.title"
-            label="X Title"
+            label="X"
             clearable
             color="success"
           ></v-text-field>
@@ -23,7 +23,7 @@
         <v-col>
           <v-text-field
             v-model="options.vAxis.title"
-            label="Y Title"
+            label="Y"
             clearable
             color="success"
           ></v-text-field>
@@ -76,15 +76,15 @@ export default {
       showMenu: false,
       colorTheme,
       options: {
-        title: "DragonBall Top Tanks",
+        title: "",
         hAxis: {
-          title: "Bulkiness",
+          title: "",
           minValue: 0,
         },
         vAxis: {
-          title: "Character",
+          title: "",
         },
-        fontName: "Roboto",
+        fontName: "",
         fontSize: "16",
         width: 1000,
         height: 600,
