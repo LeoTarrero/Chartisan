@@ -39,12 +39,12 @@
             <v-list-item-group>
               <v-list-item
                 v-for="group in colorTheme"
-                :key="group"
+                :key="group.color[0]"
                 mandatory
                 @click="selectedColors(group.color)"
               >
                 <v-avatar
-                  v-for="color in group.color"
+                  v-for="color in group.color[0]"
                   :key="color"
                   :style="{ backgroundColor: color }"
                   tile
@@ -63,13 +63,20 @@
 
 <script>
 import { GChart } from "vue-google-charts/legacy";
-import { chartData } from "~/assets/chartData.js";
+// import { chartData } from "~/assets/chartData.js";
 import { EventBus } from "~/plugins/event-bus";
 import { colorTheme } from "~/assets/chartSettings.js";
 export default {
   name: "GoogleChart",
   components: {
     GChart,
+  },
+  props: {
+    data: {
+      type: Array,
+      required: true,
+    },
+    
   },
   data() {
     return {
@@ -90,7 +97,7 @@ export default {
         height: 600,
         colors: ["#3fc7ad", "#2f9480", "#0f2e28", "#1f6154"],
       },
-      data: chartData,
+      // data: chartData,
       type: "BarChart",
       watch: {
         titleInput(newTitle) {

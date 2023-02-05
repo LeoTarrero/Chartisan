@@ -11,6 +11,7 @@
       </v-toolbar>
       <v-container>
         <v-row>
+          
           <v-col cols="12" sm="9">
             <v-sheet min-height="75vh" rounded="lg">
               <v-container>
@@ -18,7 +19,7 @@
                   <v-col align="center">
                     <v-tabs-items v-model="tab">
                       <v-tab-item>
-                        <chartTemplate />
+                        <chartTemplate :data="dataItems" />
                       </v-tab-item>
                       <v-tab-item>
                         <chartTable :headers="headers" :items="items" @updateTable="updateTable"/>
@@ -33,7 +34,6 @@
           <v-col cols="12" sm="3">
             <v-sheet rounded="lg" height="65vh">
               <v-list>
-                {{items}}
                 <chartSelector />
               </v-list>
             </v-sheet>
@@ -63,10 +63,27 @@ export default {
       }),
     };
   },
+  computed:{
+    dataItems(){
+      const finalList = [];
+      const headers = Object.keys(this.items[0])
+      console.log(headers)
+      finalList.push(headers)
+      for (const item in this.items){
+        const tempList = []
+        for (const header in headers){
+          tempList.push(this.items[item][headers[header]])
+        }
+        finalList.push(tempList)
+      }
+      return finalList
+    }
+  },
   methods:{
     updateTable(items){
       this.items = items
     }
-  }
+  },
+  
 };
 </script>
