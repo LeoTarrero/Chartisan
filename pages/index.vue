@@ -21,7 +21,7 @@
                         <chartTemplate />
                       </v-tab-item>
                       <v-tab-item>
-                        <chartTable />
+                        <chartTable :headers="headers" :items="items" />
                       </v-tab-item>
                     </v-tabs-items>
                   </v-col>
@@ -43,11 +43,23 @@
   </v-app>
 </template>
 <script>
+import { chartData } from "~/assets/chartData";
 export default {
   data() {
     return {
       tab: null,
       tabLinks: ["Chart", "Table"],
+      headers: chartData[0].map((header) => ({
+        text: header,
+        value: header,
+      })),
+      items: chartData.slice(1).map((item) => {
+        const itemObject = {};
+        chartData[0].forEach((header, index) => {
+          itemObject[header] = item[index];
+        });
+        return itemObject;
+      }),
     };
   },
 };
