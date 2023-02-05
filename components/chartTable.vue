@@ -65,10 +65,13 @@ export default {
   },
   data() {
     return {
+      itemData: this.items,
+      headerData: this.headers,
       dialog: false,
       search: "",
     };
   },
+
   methods: {
     save() {},
     cancel() {},
@@ -79,13 +82,13 @@ export default {
         id: this.items.length + 1,
         name: "",
       };
-      /*    this.items.push(newItem); */
+      /*  this.items.push(newItem); */
       this.$emit("add-item", newItem);
     },
     deleteItem(item) {
       this.editedIndex = this.items.indexOf(item);
       this.editedItem = Object.assign({}, item);
-      /*     this.items.splice(this.editedIndex, 1); */
+      /*       this.items.splice(this.editedIndex, 1); */
       this.$emit("update-items", this.items);
     },
     downloadData() {

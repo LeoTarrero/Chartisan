@@ -21,7 +21,12 @@
                         <chartTemplate />
                       </v-tab-item>
                       <v-tab-item>
-                        <chartTable :headers="headers" :items="items" />
+                        <chartTable
+                          :headers="headers"
+                          :items="items"
+                          @add-item="updateNewItem"
+                          @delete-item="updateDeletedItem"
+                        />
                       </v-tab-item>
                     </v-tabs-items>
                   </v-col>
@@ -60,6 +65,14 @@ export default {
         });
         return itemObject;
       }),
+      methods: {
+        updateNewItem(newItem) {
+          this.items.push(newItem);
+        },
+        updateDeletedItem() {
+          this.items.splice(this.editedIndex, 1);
+        },
+      },
     };
   },
 };
