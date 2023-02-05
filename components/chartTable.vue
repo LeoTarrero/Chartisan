@@ -17,20 +17,20 @@
           ><v-icon>mdi-download</v-icon></v-btn
         >
       </v-toolbar>
-      <v-data-table :headers="localHeaders" :items="localItems" :search="search" >
-        <template #item="{ item,headers }">
+      <v-data-table :headers="localHeaders" :items="localItems" :search="search">
+        <template #item="{ item, headers }">
           <tr>
             <td v-for="header in headers" :key="header.text">
               <v-text-field
                 v-model="item[header.value]"
                 dense
-                flat  
+                flat
                 solo
-                @change="$emit('updateTable',localItems)"
-
+                @change="$emit('updateTable', localItems)"
               >
               </v-text-field>
             </td>
+            <v-btn text @click="deleteItem"><v-icon small>mdi-close</v-icon></v-btn>
           </tr>
         </template>
       </v-data-table>
@@ -54,7 +54,7 @@ export default {
       dialog: false,
       search: "",
       localHeaders: Array.from(this.headers),
-      localItems: Array.from(this.items)
+      localItems: Array.from(this.items),
     };
   },
   methods: {
@@ -67,14 +67,12 @@ export default {
         id: this.items.length + 1,
         name: "",
       };
-          this.localItems.push(newItem); 
-      // this.$emit("add-item", newItem);
+      this.localItems.push(newItem);
     },
     deleteItem(item) {
       this.editedIndex = this.localItems.indexOf(item);
       this.editedItem = Object.assign({}, item);
-      this.localItems.splice(this.editedIndex, 1); 
-      // this.$emit("update-items", this.items);
+      this.localItems.splice(this.editedIndex, 1);
     },
     downloadData() {
       const data = "module.exports = " + JSON.stringify(this.items);
