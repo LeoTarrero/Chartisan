@@ -16,10 +16,6 @@
         <v-btn outlined color="success" @click="downloadData"
           ><v-icon>mdi-download</v-icon></v-btn
         >
-        <v-divider vertical class="mx-4" />
-        <v-btn outlined color="success" @click="saveTable"
-          ><v-icon>mdi-save</v-icon></v-btn
-        >
       </v-toolbar>
       <v-data-table :headers="headers" :items="items" :search="search">
         <template #body="{ items }">
@@ -55,7 +51,6 @@
   </v-container>
 </template>
 <script>
-import fs from "fs";
 export default {
   data() {
     return {
@@ -91,10 +86,6 @@ export default {
       this.editedIndex = this.items.indexOf(item);
       this.editedItem = Object.assign({}, item);
       this.items.splice(this.editedIndex, 1);
-    },
-    async saveTable() {
-      const data = "File content to save";
-      await fs.promises.writeFile("path/to/file.txt", data);
     },
     downloadData() {
       const data = "module.exports = " + JSON.stringify(this.items);
