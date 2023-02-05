@@ -17,8 +17,22 @@
           ><v-icon>mdi-download</v-icon></v-btn
         >
       </v-toolbar>
-      <v-data-table :headers="headers" :items="items" :search="search">
-        <template #body="{ items }">
+      <v-data-table :headers="headers" :items="items" :search="search" >
+        <template #item="{ item }">
+          
+          <tr>
+            <td v-for="col in item" :key="col">
+              <v-text-field
+                dense
+                flat  
+                solo
+                :value="col"
+              >
+              </v-text-field>
+            </td>
+          </tr>
+        </template>
+        <!-- <template #body="{ items }">
           <tbody>
             <tr v-for="(item, index) in items" :key="index">
               <td v-for="header in headers" :key="header">
@@ -46,7 +60,7 @@
               </v-icon>
             </tr>
           </tbody>
-        </template>
+        </template> -->
       </v-data-table>
     </v-card>
   </v-container>
