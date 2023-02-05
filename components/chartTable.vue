@@ -30,7 +30,9 @@
               >
               </v-text-field>
             </td>
-            <v-btn text @click="deleteItem"><v-icon small>mdi-close</v-icon></v-btn>
+            <v-col>
+              <v-icon small class="mt-4" @click="deleteItem">mdi-close</v-icon></v-col
+            >
           </tr>
         </template>
       </v-data-table>
