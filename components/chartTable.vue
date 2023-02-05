@@ -17,16 +17,16 @@
           ><v-icon>mdi-download</v-icon></v-btn
         >
       </v-toolbar>
+      {{items}}
       <v-data-table :headers="headers" :items="items" :search="search" >
-        <template #item="{ item }">
-          
+        <template #item="{ item,headers }">
           <tr>
-            <td v-for="col in item" :key="col">
+            <td v-for="header in headers" :key="header">
               <v-text-field
+                v-model="item[header.value]"
                 dense
                 flat  
                 solo
-                :value="col"
               >
               </v-text-field>
             </td>
