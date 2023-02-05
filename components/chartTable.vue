@@ -20,7 +20,7 @@
       <v-data-table :headers="headers" :items="items" :search="search">
         <template #body="{ items }">
           <tbody>
-            <tr v-for="item in items" :key="item.id">
+            <tr v-for="(item, index) in items" :key="index">
               <td v-for="header in headers" :key="header">
                 <v-edit-dialog
                   :return-value.sync="item[header.value]"
@@ -53,13 +53,12 @@
 </template>
 <script>
 import { chartData } from "~/assets/chartData";
-
 export default {
   data() {
     return {
       dialog: false,
       search: "",
-      headers: chartData[0].map((header, index) => ({
+      headers: chartData[0].map((header) => ({
         text: header,
         value: header,
       })),
@@ -72,7 +71,6 @@ export default {
       }),
     };
   },
-
   methods: {
     save() {},
     cancel() {},
@@ -81,7 +79,7 @@ export default {
     addItem() {
       const newItem = {
         id: this.items.length + 1,
-        name: "",
+        name: "New Character",
       };
       this.items.push(newItem);
     },
