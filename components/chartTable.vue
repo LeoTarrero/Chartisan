@@ -11,7 +11,7 @@
           hide-details
         ></v-text-field>
         <v-spacer />
-        <v-btn outlined color="success" @click="addItem">Add Rows</v-btn>
+        <v-btn outlined color="success" @click="addItem">New Item</v-btn>
         <v-divider vertical class="mx-4" />
         <v-btn outlined color="success" @click="downloadData"
           ><v-icon>mdi-download</v-icon></v-btn
