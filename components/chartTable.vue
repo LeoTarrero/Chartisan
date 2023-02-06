@@ -23,14 +23,15 @@
             <td v-for="header in headers" :key="header.text">
               <v-text-field
                 v-model="item[header.value]"
-                dense
-                flat
-                solo
+                color="success"
+                hide-details
                 @change="$emit('updateTable', localItems)"
               >
               </v-text-field>
             </td>
-            <v-btn text @click="deleteItem"><v-icon small>mdi-close</v-icon></v-btn>
+            <v-col>
+              <v-icon small @click="deleteItem">mdi-close</v-icon>
+            </v-col>
           </tr>
         </template>
       </v-data-table>
@@ -73,7 +74,7 @@ export default {
       this.editedIndex = this.localItems.indexOf(item);
       this.editedItem = Object.assign({}, item);
       this.localItems.splice(this.editedIndex, 1);
-      this.$emit('updateTable', this.localItems)
+      this.$emit("updateTable", this.localItems);
     },
     downloadData() {
       const data = "module.exports = " + JSON.stringify(this.items);
@@ -83,7 +84,7 @@ export default {
       a.download = "data.js";
       a.click();
     },
-    
   },
 };
 </script>
+<style></style>

@@ -10,9 +10,7 @@
         </v-tabs>
       </v-toolbar>
       <v-container>
-        {{items}}
         <v-row>
-          
           <v-col cols="12" sm="9">
             <v-sheet min-height="75vh" rounded="lg">
               <v-container>
@@ -20,10 +18,14 @@
                   <v-col align="center">
                     <v-tabs-items v-model="tab">
                       <v-tab-item>
-                        <chartTemplate :data="dataItems " />
+                        <chartTemplate :data="dataItems" />
                       </v-tab-item>
                       <v-tab-item>
-                        <chartTable :headers="headers" :items="items" @updateTable="updateTable"/>
+                        <chartTable
+                          :headers="headers"
+                          :items="items"
+                          @updateTable="updateTable"
+                        />
                       </v-tab-item>
                     </v-tabs-items>
                   </v-col>
@@ -64,27 +66,27 @@ export default {
       }),
     };
   },
-  computed:{
-    dataItems(){
+  computed: {
+    dataItems() {
       const finalList = [];
-      const headers = this.items[0] ? Object.keys(this.items[0]):[]
-      finalList.push(headers)
-      for (const item in this.items){
-        const tempList = []
-        for (const header in headers){
-          Number(this.items[item][headers[header]]) ? tempList.push(Number(this.items[item][headers[header]])): tempList.push(this.items[item][headers[header]])
-          
+      const headers = this.items[0] ? Object.keys(this.items[0]) : [];
+      finalList.push(headers);
+      for (const item in this.items) {
+        const tempList = [];
+        for (const header in headers) {
+          Number(this.items[item][headers[header]])
+            ? tempList.push(Number(this.items[item][headers[header]]))
+            : tempList.push(this.items[item][headers[header]]);
         }
-        finalList.push(tempList)
+        finalList.push(tempList);
       }
-      return finalList
-    }
+      return finalList;
+    },
   },
-  methods:{
-    updateTable(items){
-      this.items = items
-    }
+  methods: {
+    updateTable(items) {
+      this.items = items;
+    },
   },
-  
 };
 </script>
