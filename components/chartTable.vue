@@ -30,7 +30,7 @@
               </v-text-field>
             </td>
             <v-col>
-              <v-icon small @click="deleteItem">mdi-close</v-icon>
+              <v-icon small class="mt-4" @click="deleteItem">mdi-close</v-icon>
             </v-col>
           </tr>
         </template>
