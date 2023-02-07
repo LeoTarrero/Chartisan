@@ -79,15 +79,15 @@ export default {
       showMenu: false,
       colorTheme,
       options: {
-        title: "Dragon Ball Chunks (and Krillin)",
+        title: "B2B Buyer´s Use of Official Media in a Recent Purchase Decision",
         hAxis: {
-          title: "",
+          title: "Percentage of Respondents",
           minValue: 0,
         },
         vAxis: {
-          title: "",
+          title: "Social Media",
         },
-        fontName: "",
+        fontName: "Open Sans",
         fontSize: "16",
         width: 1000,
         height: 600,
