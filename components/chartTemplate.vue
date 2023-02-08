@@ -79,13 +79,13 @@ export default {
       showMenu: false,
       colorTheme,
       options: {
-        title: "B2B Buyer´s Use of Official Media in a Recent Purchase Decision",
+        title: "",
         hAxis: {
-          title: "Percentage of Respondents",
+          title: "",
           minValue: 0,
         },
         vAxis: {
-          title: "Social Media",
+          title: "",
         },
         fontName: "Open Sans",
         fontSize: "16",
